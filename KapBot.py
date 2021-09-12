@@ -3,9 +3,9 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix='K!')
 
-token = 'ODg2MzAzNDI5NzQyNDQwNDU4.YTzoZA.mmuPzcEyL4FBqKevHodC95VjX_c'
+token = 'ODg2MzAzNDI5NzQyNDQwNDU4.YTzoZA.21SkVZvEFYzv8Tx61JagZZjNBjM'
 
-cmds = 'K!cmds \nK!ping'
+cmds = 'K!cmds \nK!ping, \nK!clear("*insert amount*"), \nK!purge(clear all), \nK!ban, \nK!unban, \nK!kick'
 
 @client.event
 async def on_ready():
@@ -23,11 +23,17 @@ async def ping(ctx):
 @commands.has_permissions(administrator=True)
 async def clear(ctx, amount=6):
     await ctx.channel.purge(limit=amount)
+    await ctx.send(f'cleard {amount} messages')
+    await ctx.channel.purge(limit=2)
+    return
 
 @client.command()
 @commands.has_permissions(administrator=True)
 async def purge(ctx):
     await ctx.channel.purge()
+    await ctx.send('Removed all messages')
+    await ctx.channel.purge(limit=2)
+    return
 
 @client.command()
 @commands.has_permissions(administrator=True)
